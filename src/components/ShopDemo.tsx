@@ -486,7 +486,7 @@ export default function ShopDemo() {
     );
 
     return (
-        <div className="w-full bg-[#F4F6F8] min-h-screen -mx-4 md:-mx-6 -my-8 md:-my-12 px-4 md:px-6 py-8 md:py-12">
+        <div className="w-full bg-[#F4F6F8] px-4 lg:px-6 py-8 md:py-12">
             <div className="max-w-[1440px] mx-auto flex flex-col xl:flex-row gap-6 lg:gap-8 items-start">
                 
                 {/* LEFT SIDEBAR (Width 8 units -> 160px) */}
