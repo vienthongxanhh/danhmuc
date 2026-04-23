@@ -22,7 +22,7 @@ const FilterAccordion = ({ title, hasSelections = false, onClear = () => {}, chi
                     {hasSelections && (
                         <button 
                             onClick={(e) => { e.stopPropagation(); onClear(); }} 
-                            className="text-xs text-[#008a3d] hover:underline font-medium"
+                            className="text-sm text-[#008a3d] hover:underline font-medium"
                         >
                             Xóa
                         </button>
@@ -244,7 +244,7 @@ export default function ShopDemo() {
             {/* Brands (As Subcategories Widget - pure links, no filtering) */}
             <div className="w-full lg:w-auto lg:min-w-[200px] shrink-0 snap-start">
                 <FilterAccordion title="Danh mục / Hãng">
-                    <div className="bg-white border text-[12px] border-gray-200 rounded-md overflow-hidden shadow-sm">
+                    <div className="bg-white border text-sm border-gray-200 rounded-md overflow-hidden shadow-sm">
                         <div className="bg-gray-50 px-3 py-2 font-bold text-gray-800 border-b border-gray-200">
                             Cáp mạng
                         </div>
@@ -264,7 +264,7 @@ export default function ShopDemo() {
                                                 <ChevronRight className="w-3 h-3 shrink-0 text-gray-500 group-hover:text-[#e3001b] transition-transform group-hover:translate-x-1" />
                                                 <span className="truncate">Cáp mạng {brand}</span>
                                             </div>
-                                            <span className="text-[10px] opacity-90 text-gray-600 ml-2">({count})</span>
+                                            <span className="text-sm opacity-90 text-gray-600 ml-2">({count})</span>
                                         </a>
                                     </li>
                                 )
@@ -297,8 +297,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-[12px] whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{type}</span>
-                                    <span className="text-[10px] text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{type}</span>
+                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -329,8 +329,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-[12px] whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{shield}</span>
-                                    <span className="text-[10px] text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{shield}</span>
+                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -363,8 +363,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-[12px] whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{envMap[env]}</span>
-                                    <span className="text-[10px] text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{envMap[env]}</span>
+                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -406,7 +406,7 @@ export default function ShopDemo() {
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-1.5 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 focus:ring-1 focus:border-[#00509d] transition-colors"
                                     >
                                         <Filter className="w-4 h-4" />
-                                        Bộ lọc {activeFiltersCount > 0 && <span className="bg-[#00509d] text-white text-[10px] px-1.5 py-0.5 rounded-full">{activeFiltersCount}</span>}
+                                        Bộ lọc {activeFiltersCount > 0 && <span className="bg-[#00509d] text-white text-sm px-1.5 py-0.5 rounded-full">{activeFiltersCount}</span>}
                                     </button>
                                 </div>
                                 <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -425,7 +425,7 @@ export default function ShopDemo() {
                         </div>
 
                         {/* DESCRIPTIVE TEXT */}
-                        <div className="mt-4 pt-4 border-t border-gray-100 text-[13px] md:text-sm text-gray-600 leading-relaxed">
+                        <div className="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 leading-relaxed">
                             <p>
                                 <strong>Viễn Thông Xanh</strong> tự hào là nhà cung cấp các mặt hàng Sản phẩm <strong>Dây cáp mạng</strong> chính hãng, đạt tiêu chuẩn chất lượng quốc tế. 
                                 Chúng tôi phân phối đa dạng các chủng loại từ cáp mạng <strong className="text-[#00509d]">Cat5e, Cat6, Cat6A, Cat7</strong> từ các thương hiệu hàng đầu thế giới như: 
@@ -438,11 +438,11 @@ export default function ShopDemo() {
                             <div className="hidden lg:flex items-center gap-2 mt-4 pt-4 border-t border-gray-100 flex-wrap">
                                 <span className="text-sm text-gray-600 mr-1">Đang chọn:</span>
                                 {[...selectedBrands, ...selectedTypes, ...selectedShielding, ...selectedEnvironments].map(f => (
-                                    <span key={f} className="inline-flex items-center px-2.5 py-1 rounded bg-blue-50 border border-blue-100 text-blue-700 text-xs font-medium">
+                                    <span key={f} className="inline-flex items-center px-2.5 py-1 rounded bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium">
                                         {f}
                                     </span>
                                 ))}
-                                <button onClick={clearFilters} className="text-xs text-red-600 hover:underline ml-2">Xóa tất cả</button>
+                                <button onClick={clearFilters} className="text-sm text-red-600 hover:underline ml-2">Xóa tất cả</button>
                             </div>
                         )}
                     </div>
@@ -461,17 +461,17 @@ export default function ShopDemo() {
                             
                             {/* Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-black/30 flex flex-col pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
-                                <div className="bg-[#e3001b] text-white text-center py-2.5 font-bold uppercase text-[13px] tracking-wider flex items-center justify-center gap-1.5 shrink-0 shadow-md">
+                                <div className="bg-[#e3001b] text-white text-center py-2.5 font-bold uppercase text-sm tracking-wider flex items-center justify-center gap-1.5 shrink-0 shadow-md">
                                     <Star className="w-4 h-4 fill-white animate-pulse" />
                                     Ưu đãi độc quyền
                                 </div>
                                     <div className="p-4 flex flex-col flex-1 text-center justify-end">
                                         <div className="mb-auto mt-2 py-4">
                                             <h4 className="inline-block font-extrabold text-2xl leading-tight mb-2 uppercase drop-shadow-md animate-[flash-colors_1.5s_infinite,pulse-scale_1s_ease-in-out_infinite] origin-center">Giảm thêm 10%</h4>
-                                            <p className="text-[13px] text-gray-200 font-medium leading-snug">Chỉ dành cho khách hàng để lại SĐT nhận báo giá ngay hôm nay!</p>
+                                            <p className="text-sm text-gray-200 font-medium leading-snug">Chỉ dành cho khách hàng để lại SĐT nhận báo giá ngay hôm nay!</p>
                                         </div>
                                     <form onSubmit={(e) => handlePhoneSubmit(e, phoneNumber, setPhoneNumber)} className="w-full flex flex-col gap-2.5 mt-4 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 shadow-lg">
-                                        <p className="text-[11px] text-white font-semibold mb-0 uppercase tracking-widest text-[#00ff73]">Gọi ngay 24/7</p>
+                                        <p className="text-sm text-white font-semibold mb-0 uppercase tracking-widest text-[#00ff73]">Gọi ngay 24/7</p>
                                         <div className="relative">
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <Phone className="h-4 w-4 text-green-400 animate-[shake_0.8s_infinite] drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]" />
@@ -489,7 +489,7 @@ export default function ShopDemo() {
                                         <button 
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="w-full flex items-center justify-center gap-1.5 bg-[#e3001b] hover:bg-red-700 text-white py-2 rounded font-bold text-[13px] transition-colors shadow-md disabled:opacity-70 disabled:hover:bg-[#e3001b]"
+                                            className="w-full flex items-center justify-center gap-1.5 bg-[#e3001b] hover:bg-red-700 text-white py-2 rounded font-bold text-sm transition-colors shadow-md disabled:opacity-70 disabled:hover:bg-[#e3001b]"
                                         >
                                             {isSubmitting ? 'ĐANG GỬI...' : 'NHẬN BÁO GIÁ NGAY'}
                                             {!isSubmitting && <Send className="w-3.5 h-3.5" />}
@@ -497,12 +497,12 @@ export default function ShopDemo() {
                                     </form>
                                     <AnimatePresence>
                                         {formStatus === 'success' && (
-                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-[11px] text-white font-bold bg-[#008a3d] p-3 rounded-lg shadow-xl border border-green-400 flex items-center gap-2 justify-center z-10 text-center">
+                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-sm text-white font-bold bg-[#008a3d] p-3 rounded-lg shadow-xl border border-green-400 flex items-center gap-2 justify-center z-10 text-center">
                                                 <Check className="w-4 h-4 bg-white text-[#008a3d] rounded-full p-0.5 shrink-0" /> Đã đăng ký thành công! Chúng tôi sẽ gọi lại ngay.
                                             </motion.div>
                                         )}
                                         {formStatus === 'error' && (
-                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-xs text-white font-bold bg-amber-600 p-3 rounded-lg shadow-xl border border-amber-400 z-10 shrink-0 text-center">
+                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-sm text-white font-bold bg-amber-600 p-3 rounded-lg shadow-xl border border-amber-400 z-10 shrink-0 text-center">
                                                 Có lỗi xảy ra, thử lại sau.
                                             </motion.div>
                                         )}
@@ -531,9 +531,9 @@ export default function ShopDemo() {
                                         <img src={product.image} alt={product.name} className="object-cover w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500 rounded-md" />
                                         {/* Status badges */}
                                         <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
-                                            <span className="bg-[#cc0000] text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm shadow-sm">SALE</span>
+                                            <span className="bg-[#cc0000] text-white text-sm font-bold px-1.5 py-0.5 rounded-sm shadow-sm">SALE</span>
                                             <div className="flex flex-col gap-1 items-end">
-                                                <span className="bg-gray-900 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm shadow-sm">{product.brand}</span>
+                                                <span className="bg-gray-900 text-white text-sm font-bold px-1.5 py-0.5 rounded-sm shadow-sm">{product.brand}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -547,16 +547,16 @@ export default function ShopDemo() {
                                             {product.name}
                                         </h3>
                                         <div className="flex flex-wrap gap-1 mb-auto pb-1">
-                                            <span className="text-[9px] uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.cableType}</span>
-                                            <span className="text-[9px] uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.shielding}</span>
+                                            <span className="text-sm uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.cableType}</span>
+                                            <span className="text-sm uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.shielding}</span>
                                         </div>
                                         <div className="mt-1.5 flex flex-col">
-                                            {product.price > 0 && <span className="text-xs text-gray-400 line-through mb-0.5">{formatCurrency(product.price * 1.2)}</span>}
+                                            {product.price > 0 && <span className="text-sm text-gray-400 line-through mb-0.5">{formatCurrency(product.price * 1.2)}</span>}
                                             <span className="font-bold text-[#e3001b] text-base">{formatCurrency(product.price)}</span>
                                         </div>
                                     </div>
                                     <div className="px-3 pb-3 pt-0">
-                                         <button className="w-full py-1.5 bg-[#f8f9fa] border border-gray-200 group-hover:border-[#00509d] hover:!bg-[#e3001b] hover:!border-[#e3001b] text-[#00509d] hover:!text-white text-[13px] font-semibold rounded transition-colors flex items-center justify-center gap-1.5">
+                                         <button className="w-full py-1.5 bg-[#f8f9fa] border border-gray-200 group-hover:border-[#00509d] hover:!bg-[#e3001b] hover:!border-[#e3001b] text-[#00509d] hover:!text-white text-sm font-semibold rounded transition-colors flex items-center justify-center gap-1.5">
                                             <ShoppingCart className="w-3.5 h-3.5" />
                                             Chọn mua
                                         </button>
@@ -667,7 +667,7 @@ export default function ShopDemo() {
                     <div className="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-gray-200 mt-6 mb-12">
                         <div className="flex flex-col items-center justify-center text-center mb-4 pb-4 border-b border-gray-100">
                             <h2 className="text-xl font-bold text-gray-900 mb-1">Câu hỏi thường gặp (FAQ)</h2>
-                            <p className="text-gray-600 text-[13px] md:text-sm max-w-lg">Giải đáp những thắc mắc phổ biến nhất của người dùng khi chọn mua và thi công cáp mạng</p>
+                            <p className="text-gray-600 text-sm max-w-lg">Giải đáp những thắc mắc phổ biến nhất của người dùng khi chọn mua và thi công cáp mạng</p>
                         </div>
                         <div className="flex flex-col max-w-4xl mx-auto">
                             <FAQItem 
@@ -773,7 +773,7 @@ export default function ShopDemo() {
                                     className="w-full h-full object-cover opacity-60"
                                 />
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#00509d] to-transparent">
-                                    <div className="bg-yellow-400 text-[#00509d] px-4 py-1 rounded-full font-bold text-xs uppercase tracking-widest mb-3 shadow-lg">Quà tặng đặc biệt</div>
+                                    <div className="bg-yellow-400 text-[#00509d] px-4 py-1 rounded-full font-bold text-sm uppercase tracking-widest mb-3 shadow-lg">Quà tặng đặc biệt</div>
                                     <h2 className="text-3xl font-extrabold text-white leading-tight uppercase drop-shadow-md">
                                         Voucher Giảm 10%
                                     </h2>
@@ -819,14 +819,14 @@ export default function ShopDemo() {
                                     </button>
                                 </form>
 
-                                <p className="text-[11px] text-gray-500 mt-6">
+                                <p className="text-sm text-gray-500 mt-6">
                                     * Voucher sẽ được gửi qua SMS hoặc Zalo cho bạn. 
                                     <br />Cam kết bảo mật thông tin khách hàng tuyệt đối.
                                 </p>
 
                                 <button 
                                     onClick={() => setShowVoucherPopup(false)}
-                                    className="mt-6 text-[13px] text-gray-500 hover:text-gray-700 underline transition-colors cursor-pointer"
+                                    className="mt-6 text-sm text-gray-500 hover:text-gray-700 underline transition-colors cursor-pointer"
                                 >
                                     Không, tôi muốn mua giá gốc.
                                 </button>
