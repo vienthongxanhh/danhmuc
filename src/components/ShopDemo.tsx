@@ -68,6 +68,114 @@ const FAQItem = ({ question, answer }: { question: string, answer: React.ReactNo
     )
 }
 
+const PromoSidebar = ({ isSlim = false, className = "" }: { isSlim?: boolean, className?: string }) => {
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formStatus, setFormStatus] = useState<null | 'success' | 'error'>(null);
+
+    const handlePhoneSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!phoneNumber) return;
+        setIsSubmitting(true);
+        setFormStatus(null);
+        
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ phone: phoneNumber })
+            });
+
+            if (res.ok) {
+                setFormStatus('success');
+                setPhoneNumber('');
+            } else {
+                setFormStatus('error');
+            }
+        } catch (e) {
+            setFormStatus('error');
+        } finally {
+            setIsSubmitting(false);
+            setTimeout(() => setFormStatus(null), 4000);
+        }
+    };
+
+    return (
+        <aside className={`hidden xl:flex flex-col shrink-0 sticky top-8 rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white h-fit self-start ${className}`}>
+            {/* Header */}
+            <div className={`bg-[#e3001b] text-white text-center font-bold uppercase tracking-wider flex items-center justify-center shrink-0 shadow-md z-10 relative
+                ${isSlim ? 'py-2 gap-1 text-[11px]' : 'py-2.5 gap-1.5 text-sm'}
+            `}>
+                <Star className={`${isSlim ? 'w-3 h-3' : 'w-4 h-4'} fill-white animate-pulse`} />
+                {isSlim ? 'Ưu đãi hot' : 'Ưu đãi độc quyền'}
+            </div>
+            
+            {/* Banner Image */}
+            <div className={`relative w-full overflow-hidden group ${isSlim ? 'aspect-[4/5]' : 'h-[200px]'}`}>
+                <img src="https://images.unsplash.com/photo-1544160358-004cb68019ab?auto=format&fit=crop&q=80&w=360&h=640" alt="Khuyến mãi" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+                <div className="absolute bottom-4 inset-x-0 text-center px-2 flex flex-col items-center justify-end">
+                    <h4 className={`inline-block font-extrabold leading-tight uppercase drop-shadow-md animate-[flash-colors_1.5s_infinite,pulse-scale_1s_ease-in-out_infinite] origin-center text-white
+                        ${isSlim ? 'text-lg' : 'text-2xl'}
+                    `}>
+                        Giảm thêm 10%
+                    </h4>
+                </div>
+            </div>
+
+            {/* Form and Content */}
+            <div className={`flex flex-col flex-1 text-center relative z-10 bg-white border-t border-gray-100 ${isSlim ? 'p-3' : 'p-5'}`}>
+                <p className={`text-gray-700 font-medium leading-relaxed ${isSlim ? 'text-[11px] mb-3' : 'text-sm mb-5'}`}>
+                    Chỉ dành cho khách hàng để lại SĐT nhận báo giá ngay hôm nay!
+                </p>
+                <form onSubmit={handlePhoneSubmit} className={`w-full flex flex-col relative ${isSlim ? 'gap-2' : 'gap-3'}`}>
+                    <p className="text-xs text-[#00509d] font-bold uppercase tracking-wider mb-1 text-left">Gọi ngay 24/7</p>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <Phone className="h-4 w-4 text-[#e3001b] animate-[shake_0.8s_infinite]" />
+                        </div>
+                        <input
+                            type="tel"
+                            value={phoneNumber}
+                            onChange={e => setPhoneNumber(e.target.value)}
+                            placeholder={isSlim ? 'Nhập SĐT' : 'Nhập SĐT của bạn'}
+                            className={`w-full pl-9 py-2 bg-gray-50 border border-gray-300 rounded text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#e3001b] focus:border-transparent font-medium shadow-inner transition-shadow duration-200
+                                ${isSlim ? 'pr-2 text-xs placeholder:text-gray-400' : 'pr-3 text-sm placeholder:text-gray-500'}
+                            `}
+                            required
+                            disabled={isSubmitting}
+                        />
+                    </div>
+                    <button 
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`w-full flex items-center justify-center bg-[#e3001b] hover:bg-red-700 text-white rounded font-bold transition-colors shadow-sm disabled:opacity-70 disabled:hover:bg-[#e3001b]
+                            ${isSlim ? 'gap-1 py-2 text-xs mt-0' : 'gap-1.5 py-2.5 text-sm mt-1'}
+                        `}
+                    >
+                        {isSubmitting ? (isSlim ? 'GỬI...' : 'ĐANG GỬI...') : (isSlim ? 'NHẬN BÁO GIÁ' : 'NHẬN BÁO GIÁ NGAY')}
+                        {!isSubmitting && <Send className={isSlim ? 'w-3 h-3' : 'w-3.5 h-3.5'} />}
+                    </button>
+                </form>
+                <div className={`relative w-full ${isSlim ? 'mt-2 h-8' : 'mt-3 h-10'}`}>
+                    <AnimatePresence>
+                        {formStatus === 'success' && (
+                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className={`absolute inset-0 text-white font-bold bg-[#008a3d] rounded shadow-md border border-green-400 flex items-center justify-center text-center ${isSlim ? 'text-[10px] p-1 gap-1' : 'text-xs p-2 gap-1.5'}`}>
+                                <Check className={`bg-white text-[#008a3d] rounded-full p-[1px] shrink-0 ${isSlim ? 'w-3 h-3' : 'w-3.5 h-3.5'}`} /> Thành công!
+                            </motion.div>
+                        )}
+                        {formStatus === 'error' && (
+                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className={`absolute inset-0 text-white font-bold bg-amber-600 rounded shadow-md border border-amber-400 flex items-center justify-center text-center ${isSlim ? 'text-[10px] p-1' : 'text-xs p-2'}`}>
+                                Có lỗi, thử lại sau.
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
+        </aside>
+    )
+}
+
 export default function ShopDemo() {
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
     const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
@@ -379,9 +487,13 @@ export default function ShopDemo() {
 
     return (
         <div className="w-full bg-[#f1f3f6] min-h-screen -mx-4 md:-mx-6 -my-8 md:-my-12 px-4 md:px-6 py-8 md:py-12">
-            <div className="max-w-6xl mx-auto flex flex-col gap-6 lg:gap-8 relative items-start">
+            <div className="max-w-[1440px] mx-auto flex flex-col xl:flex-row gap-6 lg:gap-8 items-start">
+                
+                {/* LEFT SIDEBAR (Width 8 units -> 160px) */}
+                <PromoSidebar isSlim={true} className="w-[160px]" />
+
                 {/* MAIN CONTENT */}
-                <div className="flex-1 w-full pb-20 lg:pb-0">
+                <div className="flex-1 min-w-0 w-full pb-20 lg:pb-0">
                     
                     {/* BREADCRUMB & TITLE */}
                     <div className="bg-white p-4 md:p-6 mb-6 rounded-xl shadow-sm border border-gray-200">
@@ -398,29 +510,15 @@ export default function ShopDemo() {
                                 <p className="text-gray-600 text-sm mt-1">Tìm thấy <strong className="text-[#00509d]">{filteredProducts.length}</strong> sản phẩm phù hợp</p>
                             </div>
                             
-                            {/* Controls row (Sort & Filter toggle for mobile) */}
-                            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-                                <div className="flex items-center gap-2 lg:hidden w-full sm:w-auto">
-                                    <button 
-                                        onClick={() => setIsMobileFilterOpen(true)}
-                                        className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-1.5 bg-white border border-gray-300 rounded-md text-sm font-medium hover:bg-gray-50 focus:ring-1 focus:border-[#00509d] transition-colors"
-                                    >
-                                        <Filter className="w-4 h-4" />
-                                        Bộ lọc {activeFiltersCount > 0 && <span className="bg-[#00509d] text-white text-sm px-1.5 py-0.5 rounded-full">{activeFiltersCount}</span>}
-                                    </button>
-                                </div>
-                                <div className="flex items-center gap-2 w-full sm:w-auto">
-                                    <span className="text-sm text-gray-600 whitespace-nowrap">Sắp xếp:</span>
-                                    <select 
-                                        className="w-full sm:w-auto text-sm border border-gray-300 rounded-md p-1.5 focus:border-[#00509d] focus:ring-1 focus:ring-[#00509d] outline-none bg-white font-medium"
-                                        value={sortBy}
-                                        onChange={(e) => setSortBy(e.target.value)}
-                                    >
-                                        <option value="newest">Mới nhất</option>
-                                        <option value="price-asc">Giá từ thấp tới cao</option>
-                                        <option value="price-desc">Giá từ cao tới thấp</option>
-                                    </select>
-                                </div>
+                            {/* Mobile filter toggle only */}
+                            <div className="lg:hidden w-full flex justify-center py-2">
+                                <button 
+                                    onClick={() => setIsMobileFilterOpen(true)}
+                                    className="flex items-center justify-center gap-2 px-10 py-2.5 bg-white border border-[#00509d] rounded-full text-sm font-bold text-[#00509d] hover:bg-blue-50 transition-all shadow-sm w-full max-w-[280px]"
+                                >
+                                    <Filter className="w-5 h-5" />
+                                    BỘ LỌC SẢN PHẨM {activeFiltersCount > 0 && <span className="bg-[#00509d] text-white text-xs px-2 py-0.5 rounded-full">{activeFiltersCount}</span>}
+                                </button>
                             </div>
                         </div>
 
@@ -448,68 +546,26 @@ export default function ShopDemo() {
                     </div>
 
                     {/* TOP ROW: FILTER & BANNER (Desktop only) */}
-                    <div className="w-full hidden lg:flex flex-col xl:flex-row gap-6 lg:gap-8 mb-6 xl:justify-between items-stretch">
-                        <div className="flex-1 min-w-0 flex justify-start">
-                            <div className="w-full max-w-full bg-white p-4 lg:p-6 rounded-xl shadow-sm border border-gray-200 h-full">
-                                {renderFilterContent()}
-                            </div>
+                    <div className="w-full hidden lg:flex mb-6">
+                        <div className="w-full bg-white p-4 lg:p-6 rounded-xl shadow-sm border border-gray-200">
+                            {renderFilterContent()}
                         </div>
-                        {/* CONTACT FORM SIDEBAR */}
-                        <aside className="hidden xl:flex w-[260px] shrink-0 relative rounded-xl overflow-hidden shadow-sm border border-gray-200 group">
-                            {/* Background Image */}
-                            <img src="https://images.unsplash.com/photo-1544160358-004cb68019ab?auto=format&fit=crop&q=80&w=360&h=640" alt="Khuyến mãi" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                            
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-black/30 flex flex-col pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
-                                <div className="bg-[#e3001b] text-white text-center py-2.5 font-bold uppercase text-sm tracking-wider flex items-center justify-center gap-1.5 shrink-0 shadow-md">
-                                    <Star className="w-4 h-4 fill-white animate-pulse" />
-                                    Ưu đãi độc quyền
-                                </div>
-                                    <div className="p-4 flex flex-col flex-1 text-center justify-end">
-                                        <div className="mb-auto mt-2 py-4">
-                                            <h4 className="inline-block font-extrabold text-2xl leading-tight mb-2 uppercase drop-shadow-md animate-[flash-colors_1.5s_infinite,pulse-scale_1s_ease-in-out_infinite] origin-center">Giảm thêm 10%</h4>
-                                            <p className="text-sm text-gray-200 font-medium leading-snug">Chỉ dành cho khách hàng để lại SĐT nhận báo giá ngay hôm nay!</p>
-                                        </div>
-                                    <form onSubmit={(e) => handlePhoneSubmit(e, phoneNumber, setPhoneNumber)} className="w-full flex flex-col gap-2.5 mt-4 bg-white/10 backdrop-blur-md p-3 rounded-xl border border-white/20 shadow-lg">
-                                        <p className="text-sm text-white font-semibold mb-0 uppercase tracking-widest text-[#00ff73]">Gọi ngay 24/7</p>
-                                        <div className="relative">
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <Phone className="h-4 w-4 text-green-400 animate-[shake_0.8s_infinite] drop-shadow-[0_0_5px_rgba(74,222,128,0.5)]" />
-                                            </div>
-                                            <input
-                                                type="tel"
-                                                value={phoneNumber}
-                                                onChange={e => setPhoneNumber(e.target.value)}
-                                                placeholder="Nhập SĐT của bạn"
-                                                className="w-full pl-9 pr-3 py-2 bg-white rounded text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#e3001b] placeholder:text-gray-500 font-medium shadow-inner"
-                                                required
-                                                disabled={isSubmitting}
-                                            />
-                                        </div>
-                                        <button 
-                                            type="submit"
-                                            disabled={isSubmitting}
-                                            className="w-full flex items-center justify-center gap-1.5 bg-[#e3001b] hover:bg-red-700 text-white py-2 rounded font-bold text-sm transition-colors shadow-md disabled:opacity-70 disabled:hover:bg-[#e3001b]"
-                                        >
-                                            {isSubmitting ? 'ĐANG GỬI...' : 'NHẬN BÁO GIÁ NGAY'}
-                                            {!isSubmitting && <Send className="w-3.5 h-3.5" />}
-                                        </button>
-                                    </form>
-                                    <AnimatePresence>
-                                        {formStatus === 'success' && (
-                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-sm text-white font-bold bg-[#008a3d] p-3 rounded-lg shadow-xl border border-green-400 flex items-center gap-2 justify-center z-10 text-center">
-                                                <Check className="w-4 h-4 bg-white text-[#008a3d] rounded-full p-0.5 shrink-0" /> Đã đăng ký thành công! Chúng tôi sẽ gọi lại ngay.
-                                            </motion.div>
-                                        )}
-                                        {formStatus === 'error' && (
-                                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="absolute bottom-4 left-4 right-4 text-sm text-white font-bold bg-amber-600 p-3 rounded-lg shadow-xl border border-amber-400 z-10 shrink-0 text-center">
-                                                Có lỗi xảy ra, thử lại sau.
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            </div>
-                        </aside>
+                    </div>
+
+                    {/* SORT BAR (Always visible above products) */}
+                    <div className="flex justify-end mb-4">
+                        <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">
+                            <span className="text-sm text-gray-600 whitespace-nowrap">Sắp xếp:</span>
+                            <select 
+                                className="text-sm border-none focus:ring-0 outline-none bg-transparent font-medium cursor-pointer py-0 pr-8"
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value)}
+                            >
+                                <option value="newest">Mới nhất</option>
+                                <option value="price-asc">Giá thấp nhất</option>
+                                <option value="price-desc">Giá cao nhất</option>
+                            </select>
+                        </div>
                     </div>
 
                     {/* PRODUCT LISTING AREA */}
@@ -529,13 +585,6 @@ export default function ShopDemo() {
                                 >
                                     <div className="aspect-square bg-white px-2 pt-2 relative overflow-hidden flex items-center justify-center">
                                         <img src={product.image} alt={product.name} className="object-cover w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500 rounded-md" />
-                                        {/* Status badges */}
-                                        <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
-                                            <span className="bg-[#cc0000] text-white text-sm font-bold px-1.5 py-0.5 rounded-sm shadow-sm">SALE</span>
-                                            <div className="flex flex-col gap-1 items-end">
-                                                <span className="bg-gray-900 text-white text-sm font-bold px-1.5 py-0.5 rounded-sm shadow-sm">{product.brand}</span>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div className="p-3 flex flex-col flex-1">
                                         <div className="flex items-center text-amber-400 mb-1">
@@ -689,6 +738,9 @@ export default function ShopDemo() {
                         </div>
                     </div>
                 </div>
+
+                {/* RIGHT SIDEBAR (Width 8 units -> 160px) */}
+                <PromoSidebar isSlim={true} className="w-[160px]" />
             </div>
 
             {/* MOBILE OFF-CANVAS BACKDROP */}
