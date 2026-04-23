@@ -1,13 +1,13 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Filter, X, ShoppingCart, ChevronRight, ChevronLeft, PhoneCall, Phone, Check, Star, ChevronDown, Send } from 'lucide-react';
+import { Filter, X, ShoppingCart, Eye, ChevronRight, ChevronLeft, PhoneCall, Phone, Check, Star, ChevronDown, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { products, filterOptions } from '../data';
 
 // Modern custom checkbox component
 const CustomCheckbox = ({ isSelected, isDisabled }: { isSelected: boolean, isDisabled: boolean }) => (
     <div className={`w-5 h-5 flex-shrink-0 rounded border flex items-center justify-center transition-colors
-        ${isDisabled ? 'border-gray-200 bg-gray-50' : 
-          isSelected ? 'bg-[#00509d] border-[#00509d]' : 'border-gray-300 bg-white hover:border-[#00509d]'}
+        ${isDisabled ? 'border-slate-200 bg-slate-50' : 
+          isSelected ? 'bg-[#0056ad] border-[#0056ad]' : 'border-slate-300 bg-white hover:border-[#0056ad]'}
     `}>
         {isSelected && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
     </div>
@@ -15,9 +15,9 @@ const CustomCheckbox = ({ isSelected, isDisabled }: { isSelected: boolean, isDis
 
 const FilterAccordion = ({ title, hasSelections = false, onClear = () => {}, children }: any) => {
     return (
-        <div className="border-b lg:border-b-0 border-gray-100 py-3 lg:py-0 last:border-0 last:pb-0">
+        <div className="border-b lg:border-b-0 border-slate-100 py-3 lg:py-0 last:border-0 last:pb-0">
             <div className="flex items-center justify-between py-1 mb-3">
-                <h4 className="font-bold text-gray-800 uppercase text-sm">{title}</h4>
+                <h4 className="font-bold text-slate-800 uppercase text-sm">{title}</h4>
                 <div className="flex items-center gap-3">
                     {hasSelections && (
                         <button 
@@ -39,14 +39,14 @@ const FilterAccordion = ({ title, hasSelections = false, onClear = () => {}, chi
 const FAQItem = ({ question, answer }: { question: string, answer: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className="border-b border-gray-100 last:border-0">
+        <div className="border-b border-slate-100 last:border-0">
             <button 
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full py-3 flex items-center justify-between gap-4 text-left focus:outline-none group"
             >
-                <span className="font-semibold text-[15px] text-gray-800 group-hover:text-[#00509d] transition-colors">{question}</span>
-                <div className="shrink-0 w-7 h-7 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-blue-50 transition-colors">
-                    <ChevronDown className={`w-4 h-4 text-gray-500 group-hover:text-[#00509d] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                <span className="font-semibold text-[15px] text-slate-800 group-hover:text-[#0056ad] transition-colors">{question}</span>
+                <div className="shrink-0 w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-slate-50 transition-colors">
+                    <ChevronDown className={`w-4 h-4 text-slate-500 group-hover:text-[#0056ad] transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                 </div>
             </button>
             <AnimatePresence initial={false}>
@@ -58,7 +58,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: React.ReactNo
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                     >
-                        <div className="pb-4 text-gray-600 text-[14px] leading-relaxed pr-8">
+                        <div className="pb-4 text-slate-600 text-[14px] leading-relaxed pr-8">
                             {answer}
                         </div>
                     </motion.div>
@@ -101,9 +101,9 @@ const PromoSidebar = ({ isSlim = false, className = "" }: { isSlim?: boolean, cl
     };
 
     return (
-        <aside className={`hidden xl:flex flex-col shrink-0 sticky top-8 rounded-xl overflow-hidden shadow-sm border border-gray-200 bg-white h-fit self-start ${className}`}>
+        <aside className={`hidden xl:flex flex-col shrink-0 sticky top-8 rounded-xl overflow-hidden shadow-sm border border-slate-200 bg-white h-fit self-start ${className}`}>
             {/* Header */}
-            <div className={`bg-[#e3001b] text-white text-center font-bold uppercase tracking-wider flex items-center justify-center shrink-0 shadow-md z-10 relative
+            <div className={`bg-[#D0021B] text-white text-center font-bold uppercase tracking-wider flex items-center justify-center shrink-0 shadow-md z-10 relative
                 ${isSlim ? 'py-2 gap-1 text-[11px]' : 'py-2.5 gap-1.5 text-sm'}
             `}>
                 <Star className={`${isSlim ? 'w-3 h-3' : 'w-4 h-4'} fill-white animate-pulse`} />
@@ -124,23 +124,23 @@ const PromoSidebar = ({ isSlim = false, className = "" }: { isSlim?: boolean, cl
             </div>
 
             {/* Form and Content */}
-            <div className={`flex flex-col flex-1 text-center relative z-10 bg-white border-t border-gray-100 ${isSlim ? 'p-3' : 'p-5'}`}>
-                <p className={`text-gray-700 font-medium leading-relaxed ${isSlim ? 'text-[11px] mb-3' : 'text-sm mb-5'}`}>
+            <div className={`flex flex-col flex-1 text-center relative z-10 bg-white border-t border-slate-100 ${isSlim ? 'p-3' : 'p-5'}`}>
+                <p className={`text-slate-700 font-medium leading-relaxed ${isSlim ? 'text-[11px] mb-3' : 'text-sm mb-5'}`}>
                     Chỉ dành cho khách hàng để lại SĐT nhận báo giá ngay hôm nay!
                 </p>
                 <form onSubmit={handlePhoneSubmit} className={`w-full flex flex-col relative ${isSlim ? 'gap-2' : 'gap-3'}`}>
-                    <p className="text-xs text-[#00509d] font-bold uppercase tracking-wider mb-1 text-left">Gọi ngay 24/7</p>
+                    <p className="text-xs text-[#0056ad] font-bold uppercase tracking-wider mb-1 text-left">Gọi ngay 24/7</p>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Phone className="h-4 w-4 text-[#e3001b] animate-[shake_0.8s_infinite]" />
+                            <Phone className="h-4 w-4 text-[#D0021B] animate-[shake_0.8s_infinite]" />
                         </div>
                         <input
                             type="tel"
                             value={phoneNumber}
                             onChange={e => setPhoneNumber(e.target.value)}
                             placeholder={isSlim ? 'Nhập SĐT' : 'Nhập SĐT của bạn'}
-                            className={`w-full pl-9 py-2 bg-gray-50 border border-gray-300 rounded text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#e3001b] focus:border-transparent font-medium shadow-inner transition-shadow duration-200
-                                ${isSlim ? 'pr-2 text-xs placeholder:text-gray-400' : 'pr-3 text-sm placeholder:text-gray-500'}
+                            className={`w-full pl-9 py-2 bg-slate-50 border border-slate-300 rounded text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#D0021B] focus:border-transparent font-medium shadow-inner transition-shadow duration-200
+                                ${isSlim ? 'pr-2 text-xs placeholder:text-slate-400' : 'pr-3 text-sm placeholder:text-slate-500'}
                             `}
                             required
                             disabled={isSubmitting}
@@ -149,7 +149,7 @@ const PromoSidebar = ({ isSlim = false, className = "" }: { isSlim?: boolean, cl
                     <button 
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full flex items-center justify-center bg-[#e3001b] hover:bg-red-700 text-white rounded font-bold transition-colors shadow-sm disabled:opacity-70 disabled:hover:bg-[#e3001b]
+                        className={`w-full flex items-center justify-center bg-[#D0021B] hover:bg-[#b50117] text-white rounded font-bold transition-colors shadow-sm disabled:opacity-70 disabled:hover:bg-[#D0021B]
                             ${isSlim ? 'gap-1 py-2 text-xs mt-0' : 'gap-1.5 py-2.5 text-sm mt-1'}
                         `}
                     >
@@ -341,8 +341,8 @@ export default function ShopDemo() {
 
     const renderFilterContent = () => (
         <div className="w-full">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-200 lg:hidden">
-                <h3 className="font-bold text-lg text-[#00509d] flex items-center gap-2 uppercase tracking-wide">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200 lg:hidden">
+                <h3 className="font-bold text-lg text-[#0056ad] flex items-center gap-2 uppercase tracking-wide">
                     <Filter className="w-5 h-5" />
                     Bộ lọc sản phẩm
                 </h3>
@@ -352,8 +352,8 @@ export default function ShopDemo() {
             {/* Brands (As Subcategories Widget - pure links, no filtering) */}
             <div className="w-full lg:w-auto lg:min-w-[200px] shrink-0 snap-start">
                 <FilterAccordion title="Danh mục / Hãng">
-                    <div className="bg-white border text-sm border-gray-200 rounded-md overflow-hidden shadow-sm">
-                        <div className="bg-gray-50 px-3 py-2 font-bold text-gray-800 border-b border-gray-200">
+                    <div className="bg-[#f0f8ff] border text-sm border-slate-200 rounded-md overflow-hidden shadow-sm">
+                        <div className="bg-[#e6f3fc] px-3 py-2 font-bold text-[#0056ad] border-b border-slate-200">
                             Cáp mạng
                         </div>
                         <ul className="max-h-[250px] overflow-y-auto custom-scrollbar flex flex-col">
@@ -361,18 +361,18 @@ export default function ShopDemo() {
                                 // Only count total available products for category display, do not grey out
                                 const count = products.filter(p => p.brand === brand).length;
                                 return (
-                                    <li key={brand} className={`${index !== filterOptions.brands.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                                    <li key={brand} className={`${index !== filterOptions.brands.length - 1 ? 'border-b border-slate-200' : ''}`}>
                                         <a 
                                             href={`https://vienthongxanh.vn/danh-muc/cap-mang/cap-mang-${brand.toLowerCase().replace(/\s+/g, '-')}/`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-full flex items-center justify-between py-1.5 px-2.5 group transition-colors cursor-pointer hover:bg-gray-50"
+                                            className="w-full flex items-center justify-between py-1.5 px-2.5 group transition-colors cursor-pointer hover:bg-[#e6f3fc]"
                                         >
-                                            <div className="flex items-center gap-1.5 flex-1 text-gray-700 group-hover:text-[#e3001b] whitespace-nowrap">
-                                                <ChevronRight className="w-3 h-3 shrink-0 text-gray-500 group-hover:text-[#e3001b] transition-transform group-hover:translate-x-1" />
+                                            <div className="flex items-center gap-1.5 flex-1 text-slate-700 group-hover:text-[#D0021B] whitespace-nowrap">
+                                                <ChevronRight className="w-3 h-3 shrink-0 text-slate-500 group-hover:text-[#D0021B] transition-transform group-hover:translate-x-1" />
                                                 <span className="truncate">Cáp mạng {brand}</span>
                                             </div>
-                                            <span className="text-sm opacity-90 text-gray-600 ml-2">({count})</span>
+                                            <span className="text-sm opacity-90 text-slate-600 ml-2">({count})</span>
                                         </a>
                                     </li>
                                 )
@@ -389,7 +389,7 @@ export default function ShopDemo() {
                     hasSelections={selectedTypes.length > 0} 
                     onClear={() => clearSpecificGroup(setSelectedTypes)}
                 >
-                    <div className="bg-white border border-gray-200 rounded-md p-2.5 shadow-sm space-y-2">
+                    <div className="bg-[#f0f8ff] border border-slate-200 rounded-md p-2.5 shadow-sm space-y-2">
                         {filterOptions.cableTypes.map(type => {
                             const count = getCountForOption('cableType', type);
                             const isSelected = selectedTypes.includes(type);
@@ -405,8 +405,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{type}</span>
-                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#0056ad]' : 'text-slate-700 group-hover:text-[#0056ad]'}`}>{type}</span>
+                                    <span className="text-sm text-slate-600 bg-slate-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -421,7 +421,7 @@ export default function ShopDemo() {
                     hasSelections={selectedShielding.length > 0} 
                     onClear={() => clearSpecificGroup(setSelectedShielding)}
                 >
-                    <div className="bg-white border border-gray-200 rounded-md p-2.5 shadow-sm space-y-2">
+                    <div className="bg-[#f0f8ff] border border-slate-200 rounded-md p-2.5 shadow-sm space-y-2">
                         {filterOptions.shielding.map(shield => {
                             const count = getCountForOption('shielding', shield);
                             const isSelected = selectedShielding.includes(shield);
@@ -437,8 +437,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{shield}</span>
-                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#0056ad]' : 'text-slate-700 group-hover:text-[#0056ad]'}`}>{shield}</span>
+                                    <span className="text-sm text-slate-600 bg-slate-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -453,7 +453,7 @@ export default function ShopDemo() {
                     hasSelections={selectedEnvironments.length > 0} 
                     onClear={() => clearSpecificGroup(setSelectedEnvironments)}
                 >
-                    <div className="bg-white border border-gray-200 rounded-md p-2.5 shadow-sm space-y-2">
+                    <div className="bg-[#f0f8ff] border border-slate-200 rounded-md p-2.5 shadow-sm space-y-2">
                         {filterOptions.environments.map(env => {
                             const count = getCountForOption('environment', env);
                             const isSelected = selectedEnvironments.includes(env);
@@ -471,8 +471,8 @@ export default function ShopDemo() {
                                         />
                                     </div>
                                     <CustomCheckbox isSelected={isSelected} isDisabled={isDisabled} />
-                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#00509d]' : 'text-gray-700 group-hover:text-[#00509d]'}`}>{envMap[env]}</span>
-                                    <span className="text-sm text-gray-600 bg-gray-100 rounded-full px-1.5 py-0.5">{count}</span>
+                                    <span className={`text-sm whitespace-nowrap flex-1 ${isSelected ? 'font-medium text-[#0056ad]' : 'text-slate-700 group-hover:text-[#0056ad]'}`}>{envMap[env]}</span>
+                                    <span className="text-sm text-slate-600 bg-slate-100 rounded-full px-1.5 py-0.5">{count}</span>
                                 </label>
                             )
                         })}
@@ -486,7 +486,7 @@ export default function ShopDemo() {
     );
 
     return (
-        <div className="w-full bg-[#f1f3f6] min-h-screen -mx-4 md:-mx-6 -my-8 md:-my-12 px-4 md:px-6 py-8 md:py-12">
+        <div className="w-full bg-[#F4F6F8] min-h-screen -mx-4 md:-mx-6 -my-8 md:-my-12 px-4 md:px-6 py-8 md:py-12">
             <div className="max-w-[1440px] mx-auto flex flex-col xl:flex-row gap-6 lg:gap-8 items-start">
                 
                 {/* LEFT SIDEBAR (Width 8 units -> 160px) */}
@@ -496,47 +496,47 @@ export default function ShopDemo() {
                 <div className="flex-1 min-w-0 w-full pb-20 lg:pb-0">
                     
                     {/* BREADCRUMB & TITLE */}
-                    <div className="bg-white p-4 md:p-6 mb-6 rounded-xl shadow-sm border border-gray-200">
-                        <div className="flex items-center text-sm text-gray-600 mb-3 gap-2">
-                            <span className="hover:text-[#00509d] cursor-pointer">Trang chủ</span>
+                    <div className="bg-white p-4 md:p-6 mb-6 rounded-xl shadow-sm border border-slate-200">
+                        <div className="flex items-center text-sm text-slate-600 mb-3 gap-2">
+                            <span className="hover:text-[#0056ad] cursor-pointer">Trang chủ</span>
                             <ChevronRight className="w-4 h-4" />
-                            <span className="hover:text-[#00509d] cursor-pointer">Sản phẩm</span>
+                            <span className="hover:text-[#0056ad] cursor-pointer">Sản phẩm</span>
                             <ChevronRight className="w-4 h-4" />
-                            <span className="text-gray-900 font-medium">Cáp mạng</span>
+                            <span className="text-slate-800 font-medium">Cáp mạng</span>
                         </div>
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0056ad] p-4 rounded-lg shadow-sm -mx-2 sm:-mx-0 mt-2">
                             <div>
-                                <h1 className="text-2xl font-bold text-gray-900 uppercase">Dây cáp mạng</h1>
-                                <p className="text-gray-600 text-sm mt-1">Tìm thấy <strong className="text-[#00509d]">{filteredProducts.length}</strong> sản phẩm phù hợp</p>
+                                <h1 className="text-2xl font-bold text-white uppercase">Dây cáp mạng</h1>
+                                <p className="text-blue-100 text-sm mt-1">Tìm thấy <strong className="text-white">{filteredProducts.length}</strong> sản phẩm phù hợp</p>
                             </div>
                             
                             {/* Mobile filter toggle only */}
                             <div className="lg:hidden w-full flex justify-center py-2">
                                 <button 
                                     onClick={() => setIsMobileFilterOpen(true)}
-                                    className="flex items-center justify-center gap-2 px-10 py-2.5 bg-white border border-[#00509d] rounded-full text-sm font-bold text-[#00509d] hover:bg-blue-50 transition-all shadow-sm w-full max-w-[280px]"
+                                    className="flex items-center justify-center gap-2 px-10 py-2.5 bg-white border border-transparent rounded-full text-sm font-bold text-[#0056ad] hover:bg-blue-50 transition-all shadow-sm w-full max-w-[280px]"
                                 >
                                     <Filter className="w-5 h-5" />
-                                    BỘ LỌC SẢN PHẨM {activeFiltersCount > 0 && <span className="bg-[#00509d] text-white text-xs px-2 py-0.5 rounded-full">{activeFiltersCount}</span>}
+                                    BỘ LỌC SẢN PHẨM {activeFiltersCount > 0 && <span className="bg-[#0056ad] text-white text-xs px-2 py-0.5 rounded-full">{activeFiltersCount}</span>}
                                 </button>
                             </div>
                         </div>
 
                         {/* DESCRIPTIVE TEXT */}
-                        <div className="mt-4 pt-4 border-t border-gray-100 text-sm text-gray-600 leading-relaxed">
+                        <div className="mt-4 pt-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">
                             <p>
                                 <strong>Viễn Thông Xanh</strong> tự hào là nhà cung cấp các mặt hàng Sản phẩm <strong>Dây cáp mạng</strong> chính hãng, đạt tiêu chuẩn chất lượng quốc tế. 
-                                Chúng tôi phân phối đa dạng các chủng loại từ cáp mạng <strong className="text-[#00509d]">Cat5e, Cat6, Cat6A, Cat7</strong> từ các thương hiệu hàng đầu thế giới như: 
-                                <strong className="text-gray-800"> Commscope/AMP, Alantek, LS, Belden, Vinacap...</strong> phù hợp cho mọi nhu cầu từ hệ thống mạng gia đình đến các dự án công trình quy mô lớn với mức giá ưu đãi nhất thị trường.
+                                Chúng tôi phân phối đa dạng các chủng loại từ cáp mạng <strong className="text-[#0056ad]">Cat5e, Cat6, Cat6A, Cat7</strong> từ các thương hiệu hàng đầu thế giới như: 
+                                <strong className="text-slate-800"> Commscope/AMP, Alantek, LS, Belden, Vinacap...</strong> phù hợp cho mọi nhu cầu từ hệ thống mạng gia đình đến các dự án công trình quy mô lớn với mức giá ưu đãi nhất thị trường.
                             </p>
                         </div>
                         
                         {/* Active Filters Tag (Desktop) */}
                         {hasActiveFilters && (
-                            <div className="hidden lg:flex items-center gap-2 mt-4 pt-4 border-t border-gray-100 flex-wrap">
-                                <span className="text-sm text-gray-600 mr-1">Đang chọn:</span>
+                            <div className="hidden lg:flex items-center gap-2 mt-4 pt-4 border-t border-slate-100 flex-wrap">
+                                <span className="text-sm text-slate-600 mr-1">Đang chọn:</span>
                                 {[...selectedBrands, ...selectedTypes, ...selectedShielding, ...selectedEnvironments].map(f => (
-                                    <span key={f} className="inline-flex items-center px-2.5 py-1 rounded bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium">
+                                    <span key={f} className="inline-flex items-center px-2.5 py-1 rounded bg-slate-50 border border-slate-200 text-[#0056ad] text-sm font-medium">
                                         {f}
                                     </span>
                                 ))}
@@ -547,29 +547,29 @@ export default function ShopDemo() {
 
                     {/* TOP ROW: FILTER & BANNER (Desktop only) */}
                     <div className="w-full hidden lg:flex mb-6">
-                        <div className="w-full bg-white p-4 lg:p-6 rounded-xl shadow-sm border border-gray-200">
+                        <div className="w-full bg-white p-4 lg:p-6 rounded-xl shadow-sm border border-slate-200">
                             {renderFilterContent()}
                         </div>
                     </div>
 
                     {/* SORT BAR (Always visible above products) */}
                     <div className="flex justify-end mb-4">
-                        <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">
-                            <span className="text-sm text-gray-600 whitespace-nowrap">Sắp xếp:</span>
+                        <div className="flex items-center gap-2 bg-[#D0021B] px-3 py-1.5 rounded-lg shadow-sm border border-[#D0021B]">
+                            <span className="text-sm text-[#F4F6F8] whitespace-nowrap">Sắp xếp:</span>
                             <select 
-                                className="text-sm border-none focus:ring-0 outline-none bg-transparent font-medium cursor-pointer py-0 pr-8"
+                                className="text-sm border-none focus:ring-0 outline-none bg-transparent font-medium cursor-pointer py-0 pr-8 text-[#F4F6F8]"
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value)}
                             >
-                                <option value="newest">Mới nhất</option>
-                                <option value="price-asc">Giá thấp nhất</option>
-                                <option value="price-desc">Giá cao nhất</option>
+                                <option value="newest" className="text-slate-800 bg-white">Mới nhất</option>
+                                <option value="price-asc" className="text-slate-800 bg-white">Giá thấp nhất</option>
+                                <option value="price-desc" className="text-slate-800 bg-white">Giá cao nhất</option>
                             </select>
                         </div>
                     </div>
 
                     {/* PRODUCT LISTING AREA */}
-                    <div className="bg-white p-5 md:p-8 rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-gray-200/60">
+                    <div className="bg-white p-5 md:p-8 rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-slate-200/60">
                         {/* PRODUCT GRID */}
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-7">
                             <AnimatePresence mode="popLayout">
@@ -581,7 +581,7 @@ export default function ShopDemo() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.2 }}
-                                    className="bg-white group rounded-lg overflow-hidden border border-gray-100 hover:border-[#00509d] shadow-[0_2px_10px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_15px_30px_-10px_rgba(0,80,157,0.15)] transition-all flex flex-col h-full"
+                                    className="bg-white group rounded-lg overflow-hidden border border-slate-100 hover:border-[#0056ad] shadow-[0_2px_10px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_15px_30px_-10px_rgba(0,80,157,0.15)] transition-all flex flex-col h-full"
                                 >
                                     <div className="aspect-square bg-white px-2 pt-2 relative overflow-hidden flex items-center justify-center">
                                         <img src={product.image} alt={product.name} className="object-cover w-full h-full mix-blend-multiply group-hover:scale-105 transition-transform duration-500 rounded-md" />
@@ -592,35 +592,35 @@ export default function ShopDemo() {
                                                 <Star key={i} className="w-3 h-3 fill-current" />
                                             ))}
                                         </div>
-                                        <h3 className="text-sm md:text-base font-bold text-gray-800 leading-snug group-hover:text-[#00509d] transition-colors mb-2 truncate">
+                                        <h3 className="text-sm md:text-base font-bold text-slate-800 leading-snug group-hover:text-[#0056ad] transition-colors mb-2 truncate">
                                             {product.name}
                                         </h3>
                                         <div className="flex flex-wrap gap-1 mb-auto pb-1">
-                                            <span className="text-sm uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.cableType}</span>
-                                            <span className="text-sm uppercase border border-gray-200 text-gray-600 px-1 rounded-sm bg-gray-50">{product.shielding}</span>
+                                            <span className="text-sm uppercase border border-slate-200 text-slate-600 px-1 rounded-sm bg-slate-50">{product.cableType}</span>
+                                            <span className="text-sm uppercase border border-slate-200 text-slate-600 px-1 rounded-sm bg-slate-50">{product.shielding}</span>
                                         </div>
                                         <div className="mt-1.5 flex flex-col">
-                                            {product.price > 0 && <span className="text-sm text-gray-400 line-through mb-0.5">{formatCurrency(product.price * 1.2)}</span>}
-                                            <span className="font-bold text-[#e3001b] text-base">{formatCurrency(product.price)}</span>
+                                            {product.price > 0 && <span className="text-sm text-slate-400 line-through mb-0.5">{formatCurrency(product.price * 1.2)}</span>}
+                                            <span className="font-bold text-[#D0021B] text-base">{formatCurrency(product.price)}</span>
                                         </div>
                                     </div>
                                     <div className="px-3 pb-3 pt-0">
-                                         <button className="w-full py-1.5 bg-[#f8f9fa] border border-gray-200 group-hover:border-[#00509d] hover:!bg-[#e3001b] hover:!border-[#e3001b] text-[#00509d] hover:!text-white text-sm font-semibold rounded transition-colors flex items-center justify-center gap-1.5">
-                                            <ShoppingCart className="w-3.5 h-3.5" />
-                                            Chọn mua
+                                         <button className="w-full py-1.5 bg-[#f8f9fa] border border-slate-200 group-hover:border-[#0056ad] hover:!bg-[#D0021B] hover:!border-[#D0021B] text-[#0056ad] hover:!text-white text-sm font-semibold rounded transition-colors flex items-center justify-center gap-1.5">
+                                            <Eye className="w-3.5 h-3.5" />
+                                            Xem chi tiết
                                         </button>
                                     </div>
                                 </motion.div>
                             ))}
                         </AnimatePresence>
                         {filteredProducts.length === 0 && (
-                            <div className="col-span-full py-16 text-center bg-white rounded-xl border border-gray-200 shadow-sm">
-                                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Filter className="w-8 h-8 text-gray-300" />
+                            <div className="col-span-full py-16 text-center bg-white rounded-xl border border-slate-200 shadow-sm">
+                                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <Filter className="w-8 h-8 text-slate-300" />
                                 </div>
-                                <p className="text-xl font-medium text-gray-800">Không có sản phẩm nào phù hợp</p>
-                                <p className="text-gray-600 mt-2 mb-6 max-w-md mx-auto">Thử xóa một vài tiêu chí lọc để tìm thấy nhiều sản phẩm hơn.</p>
-                                <button onClick={clearFilters} className="px-6 py-2.5 bg-[#00509d] text-white rounded-lg font-medium hover:bg-blue-800 transition-colors inline-block">
+                                <p className="text-xl font-medium text-slate-800">Không có sản phẩm nào phù hợp</p>
+                                <p className="text-slate-600 mt-2 mb-6 max-w-md mx-auto">Thử xóa một vài tiêu chí lọc để tìm thấy nhiều sản phẩm hơn.</p>
+                                <button onClick={clearFilters} className="px-6 py-2.5 bg-[#0056ad] text-white rounded-lg font-medium hover:bg-[#00458a] transition-colors inline-block">
                                     Xóa bộ lọc
                                 </button>
                             </div>
@@ -632,7 +632,7 @@ export default function ShopDemo() {
                         <div className="flex justify-center mt-10 mb-8">
                             <nav className="flex items-center gap-1">
                                 <button 
-                                    className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" 
+                                    className="w-10 h-10 flex items-center justify-center rounded-md border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" 
                                     disabled={currentPage === 1}
                                     onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                                 >
@@ -646,8 +646,8 @@ export default function ShopDemo() {
                                             onClick={() => setCurrentPage(pageNumber)}
                                             className={`w-10 h-10 flex items-center justify-center rounded-md font-medium transition-colors ${
                                                 currentPage === pageNumber
-                                                    ? 'bg-[#00509d] text-white border border-[#00509d]'
-                                                    : 'border border-gray-200 text-gray-700 hover:bg-gray-50'
+                                                    ? 'bg-[#0056ad] text-white border border-[#0056ad]'
+                                                    : 'border border-slate-200 text-slate-700 hover:bg-slate-50'
                                             }`}
                                         >
                                             {pageNumber}
@@ -655,7 +655,7 @@ export default function ShopDemo() {
                                     )
                                 })}
                                 <button 
-                                    className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-10 h-10 flex items-center justify-center rounded-md border border-slate-200 text-slate-500 hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled={currentPage === totalPages}
                                     onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                                 >
@@ -667,15 +667,15 @@ export default function ShopDemo() {
                     </div>
 
                     {/* DETAILED CATEGORY DESCRIPTION */}
-                    <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-200 mt-8 mb-12 relative overflow-hidden">
-                        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 pb-4 border-b border-gray-100">Cáp mạng là gì? Lựa chọn cáp mạng như thế nào cho công trình?</h2>
+                    <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-slate-200 mt-8 mb-12 relative overflow-hidden">
+                        <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-4 pb-4 border-b border-slate-100">Cáp mạng là gì? Lựa chọn cáp mạng như thế nào cho công trình?</h2>
                         <div className={`relative ${!isDescriptionExpanded ? 'max-h-[160px] overflow-hidden' : ''}`}>
-                            <div className="prose prose-sm font-sans md:prose-base max-w-none text-gray-600 prose-headings:text-gray-900 prose-a:text-[#00509d]">
+                            <div className="prose prose-sm font-sans md:prose-base max-w-none text-slate-600 prose-headings:text-slate-800 prose-a:text-[#0056ad]">
                                 <p>
                                     Cáp mạng lưới, thường được gọi chung là dây mạng, là phần cứng mạng được thiết kế để kết nối 
                                     các thiết bị mạng khác nhau. Ví dụ như kết nối nhiều máy tính, máy in hoặc máy scan nối mạng... tạo thành một mạng nội bộ hoàn chỉnh.
                                 </p>
-                                <h3 className="text-lg font-bold text-gray-800 mt-6 mb-2">1. Phân loại theo cấu trúc chống nhiễu</h3>
+                                <h3 className="text-lg font-bold text-slate-800 mt-6 mb-2">1. Phân loại theo cấu trúc chống nhiễu</h3>
                                 <p>
                                     <strong>UTP (Unshielded Twisted Pair):</strong> Là loại cáp không có lớp chống nhiễu, 
                                     thường được dùng cho các không gian trong nhà, văn phòng trống không có từ trường cao. 
@@ -685,14 +685,14 @@ export default function ShopDemo() {
                                     <strong>FTP (Foiled Twisted Pair):</strong> Có một lớp bọc bạc giúp triệt tiêu nhiễu điện từ ngoài môi trường.
                                     Loại này được khuyên dùng khi kéo cáp âm tường dính cùng đường phào điện hay những nới nhiễu loạn sóng phức tạp.
                                 </p>
-                                <h3 className="text-lg font-bold text-gray-800 mt-6 mb-2">2. Lựa chọn cáp theo chuẩn tốc độ (Cat)</h3>
+                                <h3 className="text-lg font-bold text-slate-800 mt-6 mb-2">2. Lựa chọn cáp theo chuẩn tốc độ (Cat)</h3>
                                 <ul className="list-disc pl-5 mt-2 space-y-2">
                                     <li><strong>Cat5e:</strong> Có tốc độ 10/100/1000 Mbps. Thích hợp gia đình, quán net vừa, văn phòng cơ bản. Giá rẻ nhất thị trường.</li>
                                     <li><strong>Cat6:</strong> Đáp ứng tốt tốc độ 1 Gigabit. Cấu trúc có thêm lõi chữ thập xoắn (cross filler) chống nhiễu chéo khá tốt, đáp ứng đường truyền ổn định ở khoảng cách dài.</li>
                                     <li><strong>Cat6A:</strong> Phiên bản cải tiến chuẩn đáp ứng băng thông 10 Gigabit cực nhanh. Dùng cho server cao cấp, hệ thống camera AI, tòa nhà chọc trời.</li>
                                 </ul>
-                                <div className="bg-blue-50/50 p-4 rounded-lg mt-6 border border-blue-100">
-                                    <p className="mb-0 text-[#00509d]">
+                                <div className="bg-slate-50/50 p-4 rounded-lg mt-6 border border-slate-200">
+                                    <p className="mb-0 text-[#0056ad]">
                                         <strong>Viễn Thông Xanh</strong> tự tin mang đến cho bạn các dòng sản phẩm cáp mạng có đầy đủ CO/CQ, 
                                         đã qua đo kiểm chuyên dụng. Vui lòng liên hệ <strong className="font-bold">Hotline</strong> để được phòng kỹ thuật hỗ trợ tính toán phương án đi cáp miễn phí!
                                     </p>
@@ -702,10 +702,10 @@ export default function ShopDemo() {
                                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
                             )}
                         </div>
-                        <div className="mt-6 flex justify-center border-t border-gray-100 pt-6">
+                        <div className="mt-6 flex justify-center border-t border-slate-100 pt-6">
                             <button 
                                 onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-                                className="text-[#00509d] border border-[#00509d] hover:bg-[#00509d] hover:text-white px-6 py-2.5 rounded-lg font-medium transition-colors bg-white relative z-10 flex items-center justify-center min-w-[200px]"
+                                className="text-[#0056ad] border border-[#0056ad] hover:bg-[#0056ad] hover:text-white px-6 py-2.5 rounded-lg font-medium transition-colors bg-white relative z-10 flex items-center justify-center min-w-[200px]"
                             >
                                 {isDescriptionExpanded ? 'Thu gọn nội dung' : 'Xem toàn bộ nội dung'}
                             </button>
@@ -713,10 +713,10 @@ export default function ShopDemo() {
                     </div>
 
                     {/* FAQ SECTION */}
-                    <div className="bg-white p-5 md:p-6 rounded-xl shadow-sm border border-gray-200 mt-6 mb-12">
-                        <div className="flex flex-col items-center justify-center text-center mb-4 pb-4 border-b border-gray-100">
-                            <h2 className="text-xl font-bold text-gray-900 mb-1">Câu hỏi thường gặp (FAQ)</h2>
-                            <p className="text-gray-600 text-sm max-w-lg">Giải đáp những thắc mắc phổ biến nhất của người dùng khi chọn mua và thi công cáp mạng</p>
+                    <div className="bg-[#f0f8ff] p-5 md:p-6 rounded-xl shadow-sm border border-slate-200 mt-6 mb-12">
+                        <div className="flex flex-col items-center justify-center text-center mb-4 pb-4 border-b border-slate-200">
+                            <h2 className="text-xl font-bold text-slate-800 mb-1">Câu hỏi thường gặp (FAQ)</h2>
+                            <p className="text-slate-600 text-sm max-w-lg">Giải đáp những thắc mắc phổ biến nhất của người dùng khi chọn mua và thi công cáp mạng</p>
                         </div>
                         <div className="flex flex-col max-w-4xl mx-auto">
                             <FAQItem 
@@ -751,7 +751,7 @@ export default function ShopDemo() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setIsMobileFilterOpen(false)}
-                        className="fixed inset-0 bg-gray-900/70 z-50 lg:hidden backdrop-blur-sm"
+                        className="fixed inset-0 bg-slate-900/70 z-50 lg:hidden backdrop-blur-sm"
                     />
                 )}
             </AnimatePresence>
@@ -767,7 +767,7 @@ export default function ShopDemo() {
                         className="fixed inset-y-0 left-0 w-[85vw] max-w-sm bg-white z-50 lg:hidden shadow-2xl flex flex-col overscroll-contain"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-[#00509d] text-white">
+                        <div className="flex items-center justify-between p-4 border-b border-slate-200 bg-[#0056ad] text-white">
                             <h2 className="font-bold text-lg flex items-center gap-2 uppercase tracking-wide">
                                 <Filter className="w-5 h-5" /> Bộ lộc
                             </h2>
@@ -785,14 +785,14 @@ export default function ShopDemo() {
                         </div>
 
                         {/* Sticky Footer */}
-                        <div className="p-4 border-t border-gray-200 bg-white flex flex-col gap-3 sticky bottom-0 shrink-0 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+                        <div className="p-4 border-t border-slate-200 bg-white flex flex-col gap-3 sticky bottom-0 shrink-0 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
                             <div className="flex justify-between items-center text-sm mb-1 px-1">
-                                <span className="text-gray-600">Đã chọn: <strong className="text-[#00509d]">{selectedBrands.length + selectedTypes.length + selectedShielding.length + selectedEnvironments.length}</strong></span>
-                                <button onClick={clearFilters} className="text-[#e3001b] font-medium hover:underline">Xóa tất cả</button>
+                                <span className="text-slate-600">Đã chọn: <strong className="text-[#0056ad]">{selectedBrands.length + selectedTypes.length + selectedShielding.length + selectedEnvironments.length}</strong></span>
+                                <button onClick={clearFilters} className="text-[#D0021B] font-medium hover:underline">Xóa tất cả</button>
                             </div>
                             <button 
                                 onClick={() => setIsMobileFilterOpen(false)}
-                                className="w-full bg-[#00509d] text-white font-bold uppercase rounded-lg py-3 shadow-md hover:bg-blue-800 flex justify-center items-center gap-2 active:scale-[0.98] transition-transform"
+                                className="w-full bg-[#0056ad] text-white font-bold uppercase rounded-lg py-3 shadow-md hover:bg-[#00458a] flex justify-center items-center gap-2 active:scale-[0.98] transition-transform"
                             >
                                 Hiển thị {filteredProducts.length} sản phẩm
                             </button>
@@ -810,7 +810,7 @@ export default function ShopDemo() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setShowVoucherPopup(false)}
-                            className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
+                            className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
                         />
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -818,14 +818,14 @@ export default function ShopDemo() {
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden"
                         >
-                            <div className="relative aspect-[16/9] bg-[#00509d]">
+                            <div className="relative aspect-[16/9] bg-[#0056ad]">
                                 <img 
                                     src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=600&h=300" 
                                     alt="Voucher" 
                                     className="w-full h-full object-cover opacity-60"
                                 />
-                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#00509d] to-transparent">
-                                    <div className="bg-yellow-400 text-[#00509d] px-4 py-1 rounded-full font-bold text-sm uppercase tracking-widest mb-3 shadow-lg">Quà tặng đặc biệt</div>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-[#0056ad] to-transparent">
+                                    <div className="bg-yellow-400 text-[#0056ad] px-4 py-1 rounded-full font-bold text-sm uppercase tracking-widest mb-3 shadow-lg">Quà tặng đặc biệt</div>
                                     <h2 className="text-3xl font-extrabold text-white leading-tight uppercase drop-shadow-md">
                                         Voucher Giảm 10%
                                     </h2>
@@ -833,21 +833,21 @@ export default function ShopDemo() {
                             </div>
 
                             <div className="p-8 text-center">
-                                <p className="text-gray-600 mb-6 font-medium leading-relaxed">
+                                <p className="text-slate-600 mb-6 font-medium leading-relaxed">
                                     Chúc mừng! Bạn là khách hàng may mắn nhận được voucher giảm giá 10%. Hãy để lại SĐT để nhận voucher trong vòng 24h!
                                 </p>
 
                                 <form onSubmit={(e) => handlePhoneSubmit(e, popupPhoneNumber, setPopupPhoneNumber)} className="space-y-4">
                                     <div className="relative">
                                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                                            <Phone className="h-5 w-5 text-[#00509d] animate-[shake_1s_infinite] drop-shadow-[0_0_8px_rgba(0,80,157,0.3)]" />
+                                            <Phone className="h-5 w-5 text-[#0056ad] animate-[shake_1s_infinite] drop-shadow-[0_0_8px_rgba(0,80,157,0.3)]" />
                                         </div>
                                         <input
                                             type="tel"
                                             value={popupPhoneNumber}
                                             onChange={e => setPopupPhoneNumber(e.target.value)}
                                             placeholder="Nhập số điện thoại của bạn"
-                                            className="w-full pl-11 pr-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#00509d] focus:border-transparent transition-all placeholder:text-gray-400 font-medium"
+                                            className="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0056ad] focus:border-transparent transition-all placeholder:text-slate-400 font-medium"
                                             required
                                             disabled={isSubmitting}
                                         />
@@ -858,7 +858,7 @@ export default function ShopDemo() {
                                         className={`w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold transition-all shadow-lg active:scale-[0.98]
                                             ${formStatus === 'success' 
                                                 ? 'bg-green-600 text-white cursor-default' 
-                                                : 'bg-[#e3001b] hover:bg-red-700 text-white hover:shadow-red-200'}
+                                                : 'bg-[#D0021B] hover:bg-[#b50117] text-white hover:shadow-red-200'}
                                         `}
                                     >
                                         {isSubmitting ? (
@@ -871,14 +871,14 @@ export default function ShopDemo() {
                                     </button>
                                 </form>
 
-                                <p className="text-sm text-gray-500 mt-6">
+                                <p className="text-sm text-slate-500 mt-6">
                                     * Voucher sẽ được gửi qua SMS hoặc Zalo cho bạn. 
                                     <br />Cam kết bảo mật thông tin khách hàng tuyệt đối.
                                 </p>
 
                                 <button 
                                     onClick={() => setShowVoucherPopup(false)}
-                                    className="mt-6 text-sm text-gray-500 hover:text-gray-700 underline transition-colors cursor-pointer"
+                                    className="mt-6 text-sm text-slate-500 hover:text-slate-700 underline transition-colors cursor-pointer"
                                 >
                                     Không, tôi muốn mua giá gốc.
                                 </button>
